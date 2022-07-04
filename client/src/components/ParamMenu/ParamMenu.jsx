@@ -1,6 +1,5 @@
 import React from 'react'
 import ParamBtn from '../Elements/ParamBtn'
-import Test from '../Test/Test'
 import style from './style.module.css'
 
 export default function ParamMenu({cannonName, setCannonName}) {
@@ -9,7 +8,7 @@ export default function ParamMenu({cannonName, setCannonName}) {
         <div className={style.paramBox}>
             <ParamBtn name={'battle-cannon'} cannonName={cannonName} setCannonName={setCannonName}/>
             <ParamBtn name={'las-cannon'} cannonName={cannonName} setCannonName={setCannonName}/>
-            <ParamBtn name={'Head-3'} cannonName={cannonName} setCannonName={setCannonName}/>
+            <ParamBtn name={'demolisher'} cannonName={cannonName} setCannonName={setCannonName}/>
         </div>
         <div className={style.paramBox}>
             <ParamBtn name={'Body-1'}/>
