@@ -9,12 +9,13 @@ export default function loaderStl(scene, cannonName) {
 
     const floor = new THREE.BoxGeometry(500, 500, 3);
     const floorMesh = new THREE.Mesh(floor, floorMaterial);
-    floorMesh.position.set(0, 0, -65);
+    floorMesh.position.set(0, 0, -64);
     floorMesh.receiveShadow = true;
     floorMesh.castShadow = true;
     scene.add(floorMesh);
 
-    const towerWithWeapon = new THREE.Group()
+    const tower = new THREE.Group()
+    const body = new THREE.Group()
 
     const gltfLoader = new GLTFLoader()
 
@@ -24,7 +25,7 @@ export default function loaderStl(scene, cannonName) {
         gltf.scene.position.set(13, -12, -46)
         gltf.scene.castShadow = true
         gltf.scene.receiveShadow = true
-        scene.add(gltf.scene);
+        body.add(gltf.scene);
         }
     );
 
@@ -37,7 +38,7 @@ export default function loaderStl(scene, cannonName) {
             gltf.scene.translateX(-30.5)
             gltf.scene.castShadow = true
             gltf.scene.receiveShadow = true
-            towerWithWeapon.add(gltf.scene);
+            tower.add(gltf.scene);
             });
     };
 
@@ -49,7 +50,7 @@ export default function loaderStl(scene, cannonName) {
             gltf.scene.translateX(-30.5)
             gltf.scene.castShadow = true
             gltf.scene.receiveShadow = true
-            towerWithWeapon.add(gltf.scene);
+            tower.add(gltf.scene);
             });
     }
 
@@ -61,9 +62,9 @@ export default function loaderStl(scene, cannonName) {
             gltf.scene.translateX(-30.5)
             gltf.scene.castShadow = true
             gltf.scene.receiveShadow = true
-            towerWithWeapon.add(gltf.scene);
+            tower.add(gltf.scene);
             });
     }
 
-    return towerWithWeapon
+    return {tower, body}
 }

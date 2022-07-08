@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import loaderStl from './Scripts/loader';
 import initCamera from './Scripts/camera';
 import initLight from './Scripts/light';
+import keyframes from './Scripts/keyframe';
 
 export default function Canvas() {
     const cannonName = useSelector(store => store.cannonName)
@@ -16,17 +17,11 @@ export default function Canvas() {
     initLight(scene)
 
     useEffect(() => {
-        const towerWithWeapon = loaderStl(scene, cannonName)
-        scene.add(towerWithWeapon)
+        const model = loaderStl(scene, cannonName)
+        scene.add(model.tower, model.body)
 
-        const zAxis = new THREE.Vector3( 0, 0, 1 );
-        const qInitial = new THREE.Quaternion().setFromAxisAngle( zAxis, 0 );
-        const qFinal = new THREE.Quaternion().setFromAxisAngle( zAxis, -1 );
-        const quaternionKF = new THREE.QuaternionKeyframeTrack( '.quaternion', [ 0, 5, 10 ], [ qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w, qInitial.x, qInitial.y, qInitial.z, qInitial.w ] );
-        const clip = new THREE.AnimationClip( 'Action', 20, [quaternionKF] );
-        const mixer = new THREE.AnimationMixer( towerWithWeapon )
-        const clipAction = mixer.clipAction( clip );
-        clipAction.play();
+        const mixers = keyframes(model)
+        console.log(mixers)
 
         let animateId;
         const animate = function () {
@@ -53,8 +48,14 @@ export default function Canvas() {
                 renderer.render(scene, camera);
             }
             const delta = clock.getDelta();
-            if ( mixer ) {
-                mixer.update( delta );
+            if ( mixers.mixer ) {
+                mixers.mixer.update( delta );
+            }
+            if (  mixers.mixer2 ) {
+                mixers.mixer2.update( delta );
+            }
+            if (  mixers.mixer3 ) {
+                mixers.mixer3.update( delta );
             }
         }
 
@@ -70,6 +71,9 @@ export default function Canvas() {
 
         return () => {
             cancelAnimationFrame(animateId);
+            model.body.children[0].children[0].children[0].children[0].geometry.dispose()
+            model.tower.children[0].children[0].children[0].children[0].geometry.dispose()
+            scene.remove(model.body, model.tower)
             renderer.dispose();
             scene.clear();
             document.body.removeChild(renderer.domElement);

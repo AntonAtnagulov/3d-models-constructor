@@ -1,5 +1,4 @@
 import React from 'react';
-import InfoBox from '../Elements/InfoBox';
 import ParamBtn from '../Elements/ParamBtn';
 import style from './style.module.css';
 
@@ -24,6 +23,7 @@ export default function ParamMenu({ }) {
                     return (
                         <ParamBtn
                             name={el}
+                            key={el.toString()}
                         />
                     );
                 })}
@@ -34,6 +34,7 @@ export default function ParamMenu({ }) {
                     return (
                         <ParamBtn
                             name={el}
+                            key={el.toString()}
                         />
                     );
                 })}
