@@ -1,15 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import Canvas from './components/Canvas/Canvas';
 import ParamMenu from './components/ParamMenu/ParamMenu';
-import { useState } from 'react';
+import InfoBox from './components/Elements/InfoBox';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [cannonName, setCannonName] = useState('battle-cannon')
+  const infoBox = useSelector(store => store.infoBox)
+
   return (
     <div>
-      <Canvas cannonName={cannonName} setCannonName={setCannonName}/>
-      <ParamMenu cannonName={cannonName} setCannonName={setCannonName}/>
+      <Canvas />
+      <ParamMenu/>
+      { infoBox && <InfoBox/> }
     </div>
   );
 }

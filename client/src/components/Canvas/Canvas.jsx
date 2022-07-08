@@ -1,48 +1,22 @@
 import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import loaderStl from './Scripts/loader';
 import initCamera from './Scripts/camera';
+import initLight from './Scripts/light';
 
-export default function Canvas({ cannonName, setCannonName }) {
+export default function Canvas() {
+    const cannonName = useSelector(store => store.cannonName)
     const mountRef = useRef(null);
+
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#141517');
-    let tower;
-
+    scene.background = new THREE.Color('#3b3b3b');
     const camera = new initCamera()
-
-    // const material = new THREE.MeshPhongMaterial({
-    //     color: '#061810',
-    //     flatShading: false,
-    //     // smoothShading: true
-    // });
-
-    const material = new THREE.MeshMatcapMaterial({color: '#d3d3d3'})
-
-
-    const light2 = new THREE.PointLight(0xffffff, 1);
-    const helper2 = new THREE.PointLightHelper(light2, 4);
-    light2.position.set(30, 30, 0);
-    scene.add(light2);
-
-    const light3 = new THREE.PointLight(0xffffff, 1);
-    const helper3 = new THREE.PointLightHelper(light3, 4);
-    light3.position.set(100, -300, -10);
-    light3.castShadow = true;
-    scene.add(light3);
-
-    const light5 = new THREE.PointLight(0xffffff, 1);
-    const helper5 = new THREE.PointLightHelper(light5, 4);
-    light5.position.set(70, -60, 30);
-    scene.add(light5);
-
-    const light4 = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(light4);
+    initLight(scene)
 
     useEffect(() => {
-        const towerWithWeapon = loaderStl(scene, material, cannonName, tower)
-
+        const towerWithWeapon = loaderStl(scene, cannonName)
         scene.add(towerWithWeapon)
 
         const zAxis = new THREE.Vector3( 0, 0, 1 );
@@ -85,6 +59,14 @@ export default function Canvas({ cannonName, setCannonName }) {
         }
 
         animate();
+
+        window.addEventListener( 'resize', onWindowResize, false );
+
+        function onWindowResize(){
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+        }
 
         return () => {
             cancelAnimationFrame(animateId);
