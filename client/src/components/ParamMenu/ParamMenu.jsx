@@ -11,6 +11,7 @@ export default function ParamMenu() {
         'Annihilator',
         'Eradicator',
         'Executioner',
+        'Old executioner',
         'Exterminator',
         'Vanquisher',
         'Mars battle-cannon',
@@ -18,30 +19,20 @@ export default function ParamMenu() {
         'Incinerator',
     ];
 
-    const spansonArr = ['with spanson', 'without spanson']
-    
+    const spansonArr = ['with spanson', 'without spanson'];
+
     return (
         <div className={style.mainBox}>
             <p>Turret weapons</p>
             <div className={style.paramBox}>
                 {cannonArr.map((el) => {
-                    return (
-                        <ParamBtn
-                            name={el}
-                            key={el.toString()}
-                        />
-                    );
+                    return <ParamBtn name={el} key={el.toString()} />;
                 })}
             </div>
             <p>Spanson</p>
             <div className={style.paramBox}>
                 {spansonArr.map((el) => {
-                    return (
-                        <ParamBtnSpans
-                            name={el}
-                            key={el.toString()}
-                        />
-                    );
+                    return <ParamBtnSpans name={el} key={el.toString()} />;
                 })}
             </div>
         </div>

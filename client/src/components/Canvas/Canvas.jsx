@@ -1,6 +1,6 @@
+import * as THREE from 'three';
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import loaderStl from './Scripts/loader';
 import initCamera from './Scripts/camera';
@@ -14,7 +14,7 @@ export default function Canvas() {
     const mountRef = useRef(null);
     const cannonName = useSelector((store) => store.cannonName);
     const spans = useSelector((store) => store.spans);
-    const infoBox = useSelector(store => store.infoBox)
+    const infoBox = useSelector((store) => store.infoBox);
 
     const scene = new THREE.Scene();
     const camera = new initCamera();
