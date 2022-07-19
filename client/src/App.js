@@ -2,16 +2,14 @@ import './App.css';
 import Canvas from './components/Canvas/Canvas';
 import ParamMenu from './components/ParamMenu/ParamMenu';
 import InfoBox from './components/Elements/InfoBox';
-import { useSelector } from 'react-redux';
+
+import NavLeft from './components/NavLeft/NavLeft';
 
 function App() {
-  const infoBox = useSelector(store => store.infoBox)
-
   return (
     <div>
+      <NavLeft/>
       <Canvas />
-      <ParamMenu/>
-      { infoBox && <InfoBox/> }
     </div>
   );
 }

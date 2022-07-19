@@ -8,7 +8,7 @@
     margin: 5px;
     color: #ffffff;
     font-size: 12px;
-    background-color: #111111;
+    background-color: #00000091;
     border-radius: 12px;
 }
 
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #b4b4b491;
+    background-color: #919191da;
     width: 400px;
     /* height: 350px; */
     right: 30%;
@@ -44,6 +44,7 @@
 .head {
     color: #ffffff;
     text-align: center;
+    font-size: 24px;
 }
 
 .info {

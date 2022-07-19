@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 export default function InfoBox() {
     const hoverTarget = useSelector((state) => state.hoverTarget);
+
     return (
       <>
       {
@@ -27,7 +28,7 @@ export default function InfoBox() {
                 <td>{hoverTarget.d}</td>
                 <td>{hoverTarget.abilities}</td>
             </tr>
-            {hoverTarget.name === 'executioner' && (
+            {hoverTarget.name === 'Executioner' && (
                 <tr>
                     <td>{hoverTarget.charged.range}</td>
                     <td>{hoverTarget.charged.type}</td>
@@ -41,7 +42,6 @@ export default function InfoBox() {
         <div className={style.info}>{hoverTarget.info}</div>
     </div>
       }
-
         </>
     );
 }

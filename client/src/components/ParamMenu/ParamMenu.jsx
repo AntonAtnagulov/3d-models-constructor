@@ -1,8 +1,9 @@
 import React from 'react';
 import ParamBtn from '../Elements/ParamBtn';
+import ParamBtnSpans from '../Elements/ParamBtnSpans';
 import style from './style.module.css';
 
-export default function ParamMenu({ }) {
+export default function ParamMenu() {
     const cannonArr = [
         'Battle-cannon',
         'Punisher',
@@ -12,8 +13,12 @@ export default function ParamMenu({ }) {
         'Executioner',
         'Exterminator',
         'Vanquisher',
+        'Mars battle-cannon',
+        'Mars demolisher',
+        'Incinerator',
     ];
-    const bodyArr = ['standard pattern', 'mars pattern'];
+
+    const spansonArr = ['with spanson', 'without spanson']
     
     return (
         <div className={style.mainBox}>
@@ -28,11 +33,11 @@ export default function ParamMenu({ }) {
                     );
                 })}
             </div>
-            <p>Body</p>
+            <p>Spanson</p>
             <div className={style.paramBox}>
-                {bodyArr.map((el) => {
+                {spansonArr.map((el) => {
                     return (
-                        <ParamBtn
+                        <ParamBtnSpans
                             name={el}
                             key={el.toString()}
                         />

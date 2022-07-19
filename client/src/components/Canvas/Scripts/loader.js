@@ -1,70 +1,71 @@
 import * as THREE from 'three';
+import { Vector3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import loadOne from './loadOne'
 
-export default function loaderStl(scene, cannonName) {
-    const floorMaterial = new THREE.MeshPhongMaterial({
-        color: '#3b3b3b',
-        flatShading: false,
-    });
+export default function loaderStl(scene, cannonName, spans) {
+    const tower = new THREE.Group();
+    const body = new THREE.Group();
+    const spansWeapon = new THREE.Group();
 
-    const floor = new THREE.BoxGeometry(500, 500, 3);
-    const floorMesh = new THREE.Mesh(floor, floorMaterial);
-    floorMesh.position.set(0, 0, -64);
-    floorMesh.receiveShadow = true;
-    floorMesh.castShadow = true;
-    scene.add(floorMesh);
+    const gltfLoader = new GLTFLoader();
 
-    const tower = new THREE.Group()
-    const body = new THREE.Group()
+    const bodyVec3 = new Vector3(17.5, -11.5, 0);
+    const bolterVec3 = new Vector3(-8, 0, -17);
+    const spansVec3 = new Vector3(-8, 0, -16);
+    const spansBolterVec3 = new Vector3(21, -42, 4);
 
-    const gltfLoader = new GLTFLoader()
+    const battleCannonVec3 = new Vector3(-6, 0, -17);
+    const punisherVec3 = new Vector3(0.5, 0, -17);
+    const demolisherVec3 = new Vector3(-1, -0.6, -17);
+    const executionerVec3 = new Vector3(0, -0.5, -17);
+    const marsBattleCannonVec3 = new Vector3(2, 0.5, 3);
+    const marsDemolisherVec3 = new Vector3(2, 0.5, 3);
+    const marsIncineratorVec3 = new Vector3(2, 0.5, 3);
 
-    gltfLoader.load('./LRussBodyGLTF/LRussBodySPP.gltf', (gltf) => {
-        gltf.scene.scale.set(0.01, 0.01, 0.01)
-        gltf.scene.rotation.x = 1.55
-        gltf.scene.position.set(13, -12, -46)
-        gltf.scene.castShadow = true
-        gltf.scene.receiveShadow = true
-        body.add(gltf.scene);
-        }
-    );
+    loadOne('./LRussBodyGLTF/LRussBodySPP.gltf', gltfLoader, body, bodyVec3);
+    loadOne('./hullBolterGLTF4/hullBolter.glb', gltfLoader, body, bolterVec3);
 
-
-    if (cannonName === 'Battle-cannon') {
-        gltfLoader.load('./LRussTowerBattleCannonGLTF/towerBattleCannonSPP.glb', (gltf) => {
-            gltf.scene.scale.set(0.01, 0.01, 0.01)
-            gltf.scene.rotation.x = 1.55
-            gltf.scene.position.set(25, -5, -62)
-            gltf.scene.translateX(-30.5)
-            gltf.scene.castShadow = true
-            gltf.scene.receiveShadow = true
-            tower.add(gltf.scene);
-            });
-    };
-
-    if (cannonName === 'Punisher') {
-        gltfLoader.load('./LRussTowePunisherGLTF/towerPunisherSPP.glb', (gltf) => {
-            gltf.scene.scale.set(0.01, 0.01, 0.01)
-            gltf.scene.rotation.x = 1.55
-            gltf.scene.position.set(29, -4, -62)
-            gltf.scene.translateX(-30.5)
-            gltf.scene.castShadow = true
-            gltf.scene.receiveShadow = true
-            tower.add(gltf.scene);
-            });
+    switch (spans) {
+        case 'with spanson':
+            loadOne('./spansonGLTF/Untitled.glb', gltfLoader, body, spansVec3);
+            loadOne('./spansBolter/Untitled.glb', gltfLoader, body, spansBolterVec3);
+            break;
+        default:
+            break;
     }
 
-    if (cannonName === 'Demolisher') {
-        gltfLoader.load('./LRussTowerDemolisherGLTF/towerDemolisherSPP.glb', (gltf) => {
-            gltf.scene.scale.set(0.01, 0.01, 0.01)
-            gltf.scene.rotation.x = 1.55
-            gltf.scene.position.set(29, -4, -62)
-            gltf.scene.translateX(-30.5)
-            gltf.scene.castShadow = true
-            gltf.scene.receiveShadow = true
-            tower.add(gltf.scene);
-            });
+    switch (cannonName) {
+        case 'Battle-cannon':
+            loadOne('./LRussTowerBattleCannonGLTF/towerBattleCannonSPP.glb', gltfLoader, tower, battleCannonVec3);
+            break;
+        case 'Punisher':
+            loadOne('./LRussTowePunisherGLTF/towerPunisherSPP.glb', gltfLoader, tower, punisherVec3);
+            break;
+        case 'Demolisher':
+            loadOne('./LRussTowerDemolisherGLTF/towerDemolisherSPP.glb', gltfLoader, tower, demolisherVec3);
+            break;
+        case 'Executioner':
+            loadOne('./LRussTowerExecutionerGLTF/towerExecutionerSPP.glb', gltfLoader, tower, executionerVec3);
+            const lightR = new THREE.PointLight(0x008aca, 2);
+            lightR.position.set(35, 0, 50);
+            tower.add(lightR);
+            break;
+        case 'Mars battle-cannon':
+            loadOne('./marsBattleCannonGLTF/marsBattleCannon.gltf', gltfLoader, tower, marsBattleCannonVec3);
+            break;
+        case 'Mars demolisher':
+            loadOne('./marsDemolisher/marsDemolisher.gltf', gltfLoader, tower, marsDemolisherVec3);
+            break;
+        case 'Incinerator':
+            loadOne('./marsExecutionerGLTF/marsExecutioner.gltf', gltfLoader, tower, marsIncineratorVec3);
+            const lightR2 = new THREE.PointLight(0x008aca, 2);
+            lightR2.position.set(35, 0, 40);
+            tower.add(lightR2);
+            break;
+        default:
+            break;
     }
 
-    return {tower, body}
+    return { tower, body, spansWeapon };
 }

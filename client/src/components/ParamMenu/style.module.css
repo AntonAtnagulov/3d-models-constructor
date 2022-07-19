@@ -5,14 +5,14 @@
     width: 25%;
     height: 100%;
     padding: 0px 40px 0px 40px;
-    background-color: #61606088;
-    border-radius: 12px;
+    background-color: #616060cc;
 }
 
 .mainBox p {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
+    border-bottom: 2px solid #000000;
 }
 
 .mainBox::-webkit-scrollbar {

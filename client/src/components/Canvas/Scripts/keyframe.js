@@ -10,19 +10,29 @@ const keyframes = (model) => {
     const clipAction = mixer.clipAction( clip );
     clipAction.play();
 
-    const positionKF = new THREE.VectorKeyframeTrack( '.position', [ 0, 0.12, 0.24 ], [ 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0 ] );
-    const clip2 = new THREE.AnimationClip( 'Action', 0.24, [positionKF] );
-    const mixer2 = new THREE.AnimationMixer( model.body )
-    const clipAction2 = mixer2.clipAction( clip2 );
-    clipAction2.play();
+    // const positionKF = new THREE.VectorKeyframeTrack( '.position', [ 0, 0.12, 0.24 ], [ 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0 ] );
+    // const clip2 = new THREE.AnimationClip( 'Action', 0.24, [positionKF] );
+    // const mixer2 = new THREE.AnimationMixer( model.body )
+    // const clipAction2 = mixer2.clipAction( clip2 );
+    // clipAction2.play();
 
-    const positionTowerKF = new THREE.VectorKeyframeTrack( '.position', [ 0, 0.12, 0.24 ], [ 0, 0, 0, 0.2, 0, 0.05, 0, 0.2, 0 ] );
-    const clip3 = new THREE.AnimationClip( 'Action', 0.24, [positionTowerKF] );
-    const mixer3 = new THREE.AnimationMixer( model.tower )
-    const clipAction3 = mixer3.clipAction( clip3 );
-    clipAction3.play();
+    // const positionTowerKF = new THREE.VectorKeyframeTrack( '.position', [ 0, 0.12, 0.24 ], [ 0, 0, 0, 0.2, 0, 0.05, 0, 0.2, 0 ] );
+    // const clip3 = new THREE.AnimationClip( 'Action', 0.24, [positionTowerKF] );
+    // const mixer3 = new THREE.AnimationMixer( model.tower )
+    // const clipAction3 = mixer3.clipAction( clip3 );
+    // clipAction3.play();
 
-    return {mixer, mixer2, mixer3}
+    // const zAxis2 = new THREE.Vector3( 0, 0, 1);
+    // const qInitial2 = new THREE.Quaternion().setFromAxisAngle( zAxis2, 0 );
+    // const qFinal2 = new THREE.Quaternion().setFromAxisAngle( zAxis2, -1 );
+    // const spansWeaponKF = new THREE.QuaternionKeyframeTrack( '.quaternion', [ 0, 3, 6 ], [ qInitial2.x, qInitial2.y, qInitial2.z, qInitial2.w, qFinal2.x, qFinal2.y, qFinal2.z, qFinal2.w, qInitial2.x, qInitial2.y, qInitial2.z, qInitial2.w ] );
+    // const clip4 = new THREE.AnimationClip( 'Action', 10, [spansWeaponKF] );
+    // const mixer4 = new THREE.AnimationMixer( model.spansWeapon )
+    // const clipAction4 = mixer4.clipAction( clip4 );
+    // clipAction4.play();
+
+    // return {mixer, mixer4}
+    return {mixer}
 }
 
 export default keyframes

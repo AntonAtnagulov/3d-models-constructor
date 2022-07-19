@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import hoverTargetReducer from './hoverTargetReducer'
 import cannonReducer from './cannonReducer';
 import infoBoxReducer from './infoBoxReducer';
+import spansReducer from './spansReducer'
 
 const rootReducer = combineReducers({
-  hoverTarget: hoverTargetReducer,
   cannonName: cannonReducer,
+  spans: spansReducer,
   infoBox: infoBoxReducer,
+  hoverTarget: hoverTargetReducer,
 });
 
 export default rootReducer;

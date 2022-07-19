@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -7,21 +7,25 @@ import initCamera from './Scripts/camera';
 import initLight from './Scripts/light';
 import keyframes from './Scripts/keyframe';
 
+import ParamMenu from '../ParamMenu/ParamMenu';
+import InfoBox from '../Elements/InfoBox';
+
 export default function Canvas() {
-    const cannonName = useSelector(store => store.cannonName)
     const mountRef = useRef(null);
+    const cannonName = useSelector((store) => store.cannonName);
+    const spans = useSelector((store) => store.spans);
+    const infoBox = useSelector(store => store.infoBox)
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#3b3b3b');
-    const camera = new initCamera()
-    initLight(scene)
+    const camera = new initCamera();
+    initLight(scene);
 
     useEffect(() => {
-        const model = loaderStl(scene, cannonName)
-        scene.add(model.tower, model.body)
+        const model = loaderStl(scene, cannonName, spans);
+        scene.add(model.body, model.tower, model.spansWeapon);
+        model.spansWeapon.name = 'spansWeapon';
 
-        const mixers = keyframes(model)
-        console.log(mixers)
+        const mixers = keyframes(model);
 
         let animateId;
         const animate = function () {
@@ -33,14 +37,13 @@ export default function Canvas() {
             alpha: true,
             antialias: true,
         });
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.setPixelRatio(window.devicePixelRatio);
+
+        renderer.autoClear = true;
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        mountRef.current?.appendChild(renderer.domElement);
 
         // const controls = new OrbitControls(camera, renderer.domElement);
-       
+
         let clock = new THREE.Clock();
 
         function render() {
@@ -48,37 +51,41 @@ export default function Canvas() {
                 renderer.render(scene, camera);
             }
             const delta = clock.getDelta();
-            if ( mixers.mixer ) {
-                mixers.mixer.update( delta );
-            }
-            if (  mixers.mixer2 ) {
-                mixers.mixer2.update( delta );
-            }
-            if (  mixers.mixer3 ) {
-                mixers.mixer3.update( delta );
+            if (mixers.mixer) {
+                mixers.mixer.update(delta);
             }
         }
 
         animate();
 
-        window.addEventListener( 'resize', onWindowResize, false );
+        window.addEventListener('resize', onWindowResize, false);
 
-        function onWindowResize(){
+        function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
         return () => {
             cancelAnimationFrame(animateId);
-            model.body.children[0].children[0].children[0].children[0].geometry.dispose()
-            model.tower.children[0].children[0].children[0].children[0].geometry.dispose()
-            scene.remove(model.body, model.tower)
-            renderer.dispose();
+            scene.traverse((obj) => {
+                if (obj.isMesh) {
+                    obj.geometry.dispose();
+                    obj.material.dispose();
+                    scene.remove(obj);
+                    console.log(renderer.info);
+                }
+            });
             scene.clear();
-            document.body.removeChild(renderer.domElement);
+            renderer.dispose();
+            mountRef?.current?.removeChild(renderer.domElement);
         };
-    }, [cannonName]);
+    }, [cannonName, spans]);
 
-    return <div ref={mountRef} />;
+    return (
+        <div ref={mountRef}>
+            <ParamMenu />
+            {infoBox && <InfoBox />}
+        </div>
+    );
 }

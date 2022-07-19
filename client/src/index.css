@@ -2,6 +2,9 @@ body {
   margin: 0;
   /* font-family: 'Josefin Sans', sans-serif; */
   font-family: 'Rajdhani', sans-serif;
+  background-image: url('./assets/bg2.jpeg');
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 body::-webkit-scrollbar {
