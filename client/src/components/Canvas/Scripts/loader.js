@@ -14,10 +14,10 @@ export default function loaderStl(scene, cannonName, spans) {
     const bolterVec3 = new Vector3(-8, 0, -17);
     const spansVec3 = new Vector3(-8, 0, -16);
     const spansBolterVec3 = new Vector3(21, -42, 4);
-
     const battleCannonVec3 = new Vector3(-6, 0, -17);
     const punisherVec3 = new Vector3(0.5, 0, -17);
     const demolisherVec3 = new Vector3(-1, -0.6, -17);
+    const annihilatorVec3 = new Vector3(-1, 0, -17);
     const executionerVec3 = new Vector3(0, -0.5, -17);
     const marsBattleCannonVec3 = new Vector3(2, 0.5, 3);
     const marsDemolisherVec3 = new Vector3(2, 0.5, 3);
@@ -44,6 +44,9 @@ export default function loaderStl(scene, cannonName, spans) {
             break;
         case 'Demolisher':
             loadOne('./LRussTowerDemolisherGLTF/towerDemolisherSPP.glb', gltfLoader, tower, demolisherVec3);
+            break;
+        case 'Annihilator':
+            loadOne('./annihilatorGLTF/Untitled.gltf', gltfLoader, tower, annihilatorVec3);
             break;
         case 'Executioner':
             loadOne('./LRussTowerExecutionerGLTF/towerExecutionerSPP.glb', gltfLoader, tower, executionerVec3);

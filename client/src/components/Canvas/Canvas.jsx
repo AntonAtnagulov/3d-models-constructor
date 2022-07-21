@@ -48,6 +48,7 @@ export default function Canvas() {
 
         function render() {
             if (camera) {
+                console.log('inRender', model.tower)
                 renderer.render(scene, camera);
             }
             const delta = clock.getDelta();
@@ -62,6 +63,7 @@ export default function Canvas() {
 
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
+
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
@@ -73,7 +75,6 @@ export default function Canvas() {
                     obj.geometry.dispose();
                     obj.material.dispose();
                     scene.remove(obj);
-                    console.log(renderer.info);
                 }
             });
             scene.clear();
