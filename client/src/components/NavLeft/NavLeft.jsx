@@ -5,10 +5,6 @@ import style from './style.module.css'
 export default function NavLeft() {
     const dispatch = useDispatch()
 
-    const mathCapHandler = () => {
-        dispatch({type: "SET_MATHCAP", payload: true})
-     }
-
   return (
     <div className={style.mainBox}>
         <div className={style.constactBox}>
@@ -20,9 +16,6 @@ export default function NavLeft() {
             </div>
             <div className={style.iconBox}>
                 <img src='./5968722.png' width='40'></img>
-            </div>
-            <div>
-                <button onClick={mathCapHandler}>!</button>
             </div>
         </div>
     </div>

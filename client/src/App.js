@@ -1,15 +1,14 @@
 import './App.css';
 import Canvas from './components/Canvas/Canvas';
-import ParamMenu from './components/ParamMenu/ParamMenu';
-import InfoBox from './components/Elements/InfoBox';
-
 import NavLeft from './components/NavLeft/NavLeft';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
   return (
     <div>
       <NavLeft/>
       <Canvas />
+      <Spinner />
     </div>
   );
 }
