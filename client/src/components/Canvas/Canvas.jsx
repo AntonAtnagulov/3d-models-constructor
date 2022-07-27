@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import React, { useRef, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import loaderStl from './Scripts/loader';
 import initCamera from './Scripts/camera';
 import initLight from './Scripts/light';
 import keyframes from './Scripts/keyframe';
+import clearScene from './Scripts/clearScene';
 
 import ParamMenu from '../ParamMenu/ParamMenu';
 import InfoBox from '../Elements/InfoBox';
@@ -15,32 +16,31 @@ export default function Canvas() {
     const cannonName = useSelector((store) => store.cannonName);
     const spans = useSelector((store) => store.spans);
     const infoBox = useSelector((store) => store.infoBox);
+    const dispatch = useDispatch();
 
     const scene = new THREE.Scene();
     const camera = new initCamera();
     initLight(scene);
 
     useEffect(() => {
-        const model = loaderStl(scene, cannonName, spans);
+        const renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true,
+        });
+        renderer.autoClear = true;
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        const model = loaderStl(scene, cannonName, spans, mountRef, renderer, () => dispatch({type: 'SET_LOADING', payload: false}));
         scene.add(model.body, model.tower, model.spansWeapon);
-        model.spansWeapon.name = 'spansWeapon';
 
         const mixers = keyframes(model);
 
         let animateId;
         const animate = function () {
             animateId = requestAnimationFrame(animate);
+
             render();
         };
-
-        const renderer = new THREE.WebGLRenderer({
-            alpha: true,
-            antialias: true,
-        });
-
-        renderer.autoClear = true;
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        mountRef.current?.appendChild(renderer.domElement);
 
         // const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -53,31 +53,20 @@ export default function Canvas() {
             const delta = clock.getDelta();
             if (mixers.mixer) {
                 mixers.mixer.update(delta);
-            }
+            } 
         }
 
         animate();
-
-        window.addEventListener('resize', onWindowResize, false);
-
+        
+        window.addEventListener('resize', onWindowResize, onWindowResize);
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.updateProjectionMatrix();
         }
 
         return () => {
-            cancelAnimationFrame(animateId);
-            scene.traverse((obj) => {
-                if (obj.isMesh) {
-                    obj.geometry.dispose();
-                    obj.material.dispose();
-                    scene.remove(obj);
-                    console.log(renderer.info);
-                }
-            });
-            scene.clear();
-            renderer.dispose();
+            clearScene(scene, renderer, animateId, () => dispatch({type: 'SET_LOADING', payload: true}))
             mountRef?.current?.removeChild(renderer.domElement);
         };
     }, [cannonName, spans]);
