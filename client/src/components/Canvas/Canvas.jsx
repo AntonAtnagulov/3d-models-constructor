@@ -11,7 +11,7 @@ import clearScene from './Scripts/clearScene';
 import ParamMenu from '../ParamMenu/ParamMenu';
 import InfoBox from '../Elements/InfoBox';
 
-export default function Canvas() {
+export default function Canvas({width}) {
     const mountRef = useRef(null);
     const cannonName = useSelector((store) => store.cannonName);
     const spans = useSelector((store) => store.spans);
@@ -73,7 +73,7 @@ export default function Canvas() {
 
     return (
         <div ref={mountRef}>
-            <ParamMenu />
+            {width > 500 && <ParamMenu />}
             {infoBox && <InfoBox />}
         </div>
     );
