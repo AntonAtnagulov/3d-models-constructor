@@ -6,6 +6,8 @@ import Table from './Table';
 export default function InfoBox() {
     const hoverTarget = useSelector((state) => state.hoverTarget);
 
+    const columnName = ['range', 'type', 's', 'ap', 'd', 'abilities'];
+
     return (
         <>
             {hoverTarget.name && (
@@ -13,12 +15,9 @@ export default function InfoBox() {
                     <p className={style.head}>{hoverTarget.name}</p>
                     <table className="table">
                         <tr>
-                            <th>range</th>
-                            <th>type</th>
-                            <th>s</th>
-                            <th>ap</th>
-                            <th>d</th>
-                            <th>abilities</th>
+                            {columnName.map((el) => (
+                                <th>{el}</th>
+                            ))}
                         </tr>
                         <Table stat={hoverTarget} />
                         {hoverTarget.name === 'Executioner' && (

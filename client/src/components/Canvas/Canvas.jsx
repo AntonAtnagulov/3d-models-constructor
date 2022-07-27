@@ -69,6 +69,9 @@ export default function Canvas() {
                 if (obj.isMesh) {
                     obj.geometry.dispose();
                     obj.material.dispose();
+
+                    obj.geometry = null;
+                    obj.material = null;
                     scene.remove(obj);
                 }
             });
