@@ -6,6 +6,7 @@ import loaderStl from './Scripts/loader';
 import initCamera from './Scripts/camera';
 import initLight from './Scripts/light';
 import keyframes from './Scripts/keyframe';
+import clearScene from './Scripts/clearScene';
 
 import ParamMenu from '../ParamMenu/ParamMenu';
 import InfoBox from '../Elements/InfoBox';
@@ -20,7 +21,7 @@ export default function Canvas() {
     const scene = new THREE.Scene();
     const camera = new initCamera();
     initLight(scene);
-    
+
     useEffect(() => {
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
@@ -37,6 +38,7 @@ export default function Canvas() {
         let animateId;
         const animate = function () {
             animateId = requestAnimationFrame(animate);
+
             render();
         };
 
@@ -51,7 +53,7 @@ export default function Canvas() {
             const delta = clock.getDelta();
             if (mixers.mixer) {
                 mixers.mixer.update(delta);
-            }
+            } 
         }
 
         animate();
@@ -64,20 +66,7 @@ export default function Canvas() {
         }
 
         return () => {
-            cancelAnimationFrame(animateId);
-            scene.traverse((obj) => {
-                if (obj.isMesh) {
-                    obj.geometry.dispose();
-                    obj.material.dispose();
-
-                    obj.geometry = null;
-                    obj.material = null;
-                    scene.remove(obj);
-                }
-            });
-            dispatch({type: 'SET_LOADING', payload: true})
-            scene.clear();
-            renderer.dispose();
+            clearScene(scene, renderer, animateId, () => dispatch({type: 'SET_LOADING', payload: true}))
             mountRef?.current?.removeChild(renderer.domElement);
         };
     }, [cannonName, spans]);
