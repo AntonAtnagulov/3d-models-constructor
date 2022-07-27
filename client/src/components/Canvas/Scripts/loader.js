@@ -82,14 +82,6 @@ export default function loaderStl(
             break;
     }
 
-    // loadManager.onStart = function(url, item, total) {
-    //     console.log(`Loading: ${url}, ${item}, ${total}`)
-    // }
-
-    // loadManager.onProgress = function(url, items, total) {
-    //     console.log(`Progress: ${url}, ${items}, ${total}`)
-    // }
-
     loadManager.onLoad = function() {
         mountRef.current?.appendChild(renderer.domElement);
     }
