@@ -1,15 +1,45 @@
 .mainBox {
     position: absolute;
-    left: 70%;
-    top: 5%;
-    width: 400px;
-    padding: 40px;
-    background-color: #ffffff7a;
-    border-radius: 12px;
+    overflow-y: auto;
+    right: 0px;
+    width: 25%;
+    height: 100%;
+    padding: 0px 40px 0px 40px;
+    background-color: #616060cc;
+}
+
+.mainBox p {
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+}
+
+.mainBox::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.mainBox::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
 }
 
 .paramBox {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    height: 50px;
+    justify-content: space-around;
+}
+
+.categoryBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.categoryBox p {
+    padding: 0px 0px 5px 12px;
+    width: 90%;
+    color: #ffffff;
+    border-bottom: 1px solid #000000;
 }

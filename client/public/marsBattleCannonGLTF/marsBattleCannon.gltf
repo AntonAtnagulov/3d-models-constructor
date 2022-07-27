@@ -1,0 +1,180 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 470388,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 463251,
+      "max": [
+        1.0,
+        0.206696569919586,
+        0.462014943361282
+      ],
+      "min": [
+        -1.0,
+        -0.206696510314941,
+        -0.462014943361282
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 463251,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 463251,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Substance Painter 2019.1.1",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 1881552,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 5559012,
+      "byteOffset": 1881552,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 5559012,
+      "byteOffset": 7440564,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3706008,
+      "byteOffset": 12999576,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 16705584,
+      "uri": "marsBattleCannon.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "DefaultMaterial_baseColor.png"
+    },
+    {
+      "uri": "DefaultMaterial_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "DefaultMaterial_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "OPAQUE",
+      "name": "DefaultMaterial",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "marsBattleCannon",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "root",
+      "scale": [
+        4919.38671875,
+        4919.38671875,
+        4919.38671875
+      ],
+      "translation": [
+        1188.54296875,
+        4320.80859375,
+        -44.283203125
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "marsBattleCannon"
+    },
+    {
+      "mesh": 0,
+      "name": "marsBattleCannon"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

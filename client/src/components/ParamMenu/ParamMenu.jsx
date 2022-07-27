@@ -1,26 +1,40 @@
-import React from 'react'
-import ParamBtn from '../Elements/ParamBtn'
-import Test from '../Test/Test'
-import style from './style.module.css'
+import React from 'react';
+import ParamBtn from '../Elements/ParamBtn';
+import ParamBtnSpans from '../Elements/ParamBtnSpans';
+import style from './style.module.css';
 
-export default function ParamMenu({cannonName, setCannonName}) {
-  return (
-    <div className={style.mainBox}>
-        <div className={style.paramBox}>
-            <ParamBtn name={'battle-cannon'} cannonName={cannonName} setCannonName={setCannonName}/>
-            <ParamBtn name={'las-cannon'} cannonName={cannonName} setCannonName={setCannonName}/>
-            <ParamBtn name={'Head-3'} cannonName={cannonName} setCannonName={setCannonName}/>
+export default function ParamMenu() {
+    const cannonArr = [
+        'Battle-cannon',
+        'Punisher',
+        'Demolisher',
+        'Annihilator',
+        'Eradicator',
+        'Executioner',
+        'Old executioner',
+        'Exterminator',
+        'Vanquisher',
+        'Mars battle-cannon',
+        'Mars demolisher',
+        'Incinerator',
+    ];
+
+    const spansonArr = ['with spanson', 'without spanson'];
+
+    return (
+        <div className={style.mainBox}>
+            <p>Turret weapons</p>
+            <div className={style.paramBox}>
+                {cannonArr.map((el) => {
+                    return <ParamBtn name={el} key={el.toString()} />;
+                })}
+            </div>
+            <p>Spanson</p>
+            <div className={style.paramBox}>
+                {spansonArr.map((el) => {
+                    return <ParamBtnSpans name={el} key={el.toString()} />;
+                })}
+            </div>
         </div>
-        <div className={style.paramBox}>
-            <ParamBtn name={'Body-1'}/>
-        </div>
-        <div className={style.paramBox}>
-            <ParamBtn name={'Arms-1'}/>
-            <ParamBtn name={'Arms-2'}/>
-        </div>
-        <div className={style.paramBox}>
-            <ParamBtn name={'Legs-1'}/>
-        </div>
-    </div>
-  )
+    );
 }
