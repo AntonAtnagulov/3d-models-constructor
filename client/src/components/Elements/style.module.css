@@ -1,20 +1,79 @@
 .btn {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 30px;
+    width: 200px;
+    height: 200px;
     text-align: center;
-    margin: 0px 12px 0px 12px;
+    margin: 5px;
     color: #ffffff;
-    background-color: #137a81e7;
+    font-size: 12px;
+    background-color: #00000091;
     border-radius: 12px;
 }
 
 .btn span {
     user-select: none;
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+.prevImg {
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .btn:hover {
-    background-color: #0f6066e7;
+    background-color: #292929;
+    outline: 1px solid #999999;
 }
+
+.infoBox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #919191da;
+    width: 400px;
+    /* height: 350px; */
+    right: 30%;
+    top: 2%;
+    border-radius: 8px;
+}
+
+.head {
+    color: #ffffff;
+    text-align: center;
+    font-size: 24px;
+}
+
+.info {
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.infoBox table {
+    color: #ffffff;
+    width: 380px;
+    border-collapse: collapse;
+} 
+
+.infoBox tr, td {
+    width: 66px;
+}
+
+.infoBox th {
+    border: 1px solid #000000;
+    background-color: #292929;
+}
+
+.infoBox td {
+    height: 40px;
+    border: 1px solid #000000;
+    text-align: center;
+    background-color: #757575;
+}
+
+

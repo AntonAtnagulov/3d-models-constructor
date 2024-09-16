@@ -1,0 +1,186 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 279636,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 266804,
+      "max": [
+        100.823776245117,
+        20.043212890625,
+        71.4994430541992
+      ],
+      "min": [
+        -31.0368614196777,
+        -20.2564125061035,
+        53.214714050293
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 266804,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 266804,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Substance Painter 7.1.1",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 1118544,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3201648,
+      "byteOffset": 1118544,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3201648,
+      "byteOffset": 4320192,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2134432,
+      "byteOffset": 7521840,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 9656272,
+      "uri": "vanquisherSPP.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "DefaultMaterial_baseColor.png"
+    },
+    {
+      "uri": "DefaultMaterial_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "DefaultMaterial_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "OPAQUE",
+      "name": "DefaultMaterial",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "demolisherSTL",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "demolisherSTL",
+      "rotation": [
+        -0.707106828689575,
+        0.0,
+        0.0,
+        0.707106709480286
+      ],
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "translation": [
+        -572.231323242188,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "demolisherSTL"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

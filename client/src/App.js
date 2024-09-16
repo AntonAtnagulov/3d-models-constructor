@@ -1,16 +1,24 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Canvas from './components/Canvas/Canvas';
-import ParamMenu from './components/ParamMenu/ParamMenu';
-import Test from './components/Test/Test';
-import { useState } from 'react';
+import MobileNav from './components/MobileNav/MobileNav';
+import NavLeft from './components/NavLeft/NavLeft';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
-  const [cannonName, setCannonName] = useState('battle-cannon')
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    if (width === 0) {
+      setWidth(window.innerWidth)
+    }
+  }, [])
+  
   return (
     <div>
-      <Canvas cannonName={cannonName} setCannonName={setCannonName}/>
-      <ParamMenu cannonName={cannonName} setCannonName={setCannonName}/>
+      {width > 600 ? <NavLeft/> : <MobileNav/>}
+      <Canvas width={width} />
+      <Spinner width={width} />
     </div>
   );
 }
